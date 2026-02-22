@@ -2,13 +2,47 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    outline: none;
+}
+
+/* Behåll fokus! */
+:focus-visible {
+    outline: 3px solid #0b5fff;
+    outline-offset: 3px;
 }
 
 body {
     font-family: Arial, sans-serif;
     background-color: #ffffff;
-    color: #777777;
+    color: #222222;
+    line-height: 1.5;
+}
+
+.skip-link {
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    padding: 10px 12px;
+    background: #0b5fff;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 6px;
+    transform: translateY(-200%);
+}
+
+.skip-link:focus-visible {
+    transform: translateY(0);
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
 }
 
 .top-bar {
@@ -16,25 +50,31 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 12px 24px;
-    background-color: #f9f9f9;
+    background-color: #f7f7f7;
     border-bottom: 1px solid #e0e0e0;
 }
 
 .logo {
     font-size: 24px;
     font-weight: bold;
-    color: #999999;
+    color: #111111;
+    text-decoration: none;
 }
 
 .menu {
     display: flex;
     gap: 16px;
+    list-style: none;
 }
 
 .menu-item a {
     text-decoration: none;
-    color: #888888;
+    color: #1a1a1a;
     font-size: 14px;
+}
+
+.menu-item a:hover {
+    text-decoration: underline;
 }
 
 .hero {
@@ -55,19 +95,26 @@ body {
     top: 50%;
     left: 10%;
     transform: translateY(-50%);
-    background-color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.85);
     padding: 16px 24px;
     max-width: 420px;
+    border-radius: 8px;
 }
 
 .primary-button {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #cccccc;
+    background-color: #0b5fff;
     color: #ffffff;
     text-decoration: none;
-    border-radius: 4px;
+    border-radius: 6px;
     font-size: 14px;
+    border: none;
+    cursor: pointer;
+}
+
+.primary-button:hover {
+    filter: brightness(0.95);
 }
 
 .content {
@@ -77,21 +124,21 @@ body {
 .section-title h2 {
     font-size: 24px;
     margin-bottom: 16px;
-    color: #666666;
 }
 
 .products {
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
+    list-style: none;
 }
 
 .product-card {
     width: 300px;
-    border: 1px solid #f0f0f0;
+    border: 1px solid #e8e8e8;
     padding: 12px;
-    border-radius: 4px;
-    background-color: #fcfcfc;
+    border-radius: 8px;
+    background-color: #ffffff;
 }
 
 .product-image {
@@ -99,18 +146,18 @@ body {
     height: 200px;
     object-fit: cover;
     margin-bottom: 8px;
+    border-radius: 6px;
 }
 
-.product-card h1 {
+.product-card h3 {
     font-size: 18px;
     margin-bottom: 4px;
-    color: #555555;
 }
 
 .product-description {
-    font-size: 13px;
-    line-height: 1.4;
+    font-size: 14px;
     margin-bottom: 8px;
+    color: #333333;
 }
 
 .product-price {
@@ -122,11 +169,16 @@ body {
 .add-to-cart {
     display: inline-block;
     padding: 8px 16px;
-    background-color: #dddddd;
-    color: #777777;
-    border-radius: 4px;
+    background-color: #111111;
+    color: #ffffff;
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 13px;
+    font-size: 14px;
+    border: none;
+}
+
+.add-to-cart:hover {
+    filter: brightness(0.95);
 }
 
 .newsletter {
@@ -135,13 +187,22 @@ body {
     background-color: #f7f7f7;
 }
 
+.field {
+    margin: 8px 0;
+}
+
+label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
 .newsletter input {
-    padding: 8px;
-    border: 1px solid #dddddd;
-    border-radius: 4px;
-    font-size: 13px;
-    width: 200px;
-    margin-right: 8px;
+    padding: 10px;
+    border: 1px solid #cfcfcf;
+    border-radius: 6px;
+    font-size: 14px;
+    width: min(340px, 100%);
 }
 
 .footer {
@@ -153,7 +214,15 @@ body {
 }
 
 .footer a {
-    color: #999999;
+    color: #0b5fff;
     text-decoration: none;
     margin-left: 8px;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+.metrics {
+    margin-top: 10px;
 }
