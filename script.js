@@ -45,13 +45,16 @@ document.addEventListener("DOMContentLoaded", function () {
     // Starta icke-kritiskt arbete efter att DOM är redo
     runNonCriticalWork();
 
-    // 3) Add-to-cart (nu är det buttons)
+   // 3) Add-to-cart (aria-live istället för alert)
+       const cartStatus = document.getElementById("cart-status");
+
     document.querySelectorAll(".add-to-cart").forEach(function (btn) {
-        btn.addEventListener("click", function () {
-            // För labb: enkel feedback. I riktiga appar: aria-live och toast.
-            alert("Item added to cart!");
-        });
+    btn.addEventListener("click", function () {
+        if (cartStatus) {
+            cartStatus.textContent = "Item added to cart!";
+        }
     });
+});
 
     // 4) Newsletter: riktig submit + live region istället för bara alert
     const form = document.getElementById("newsletter-form");
