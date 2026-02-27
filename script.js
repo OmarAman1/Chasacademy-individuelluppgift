@@ -27,15 +27,24 @@ function runNonCriticalWork() {
 
         po.observe({ type: "largest-contentful-paint", buffered: true });
 
-        document.addEventListener("visibilitychange", () => {
-            if (document.visibilityState !== "hidden" || !lastEntry) return;
+        function reportLCP() {
+    if (!lastEntry) return;
 
-            const lcpMs = Math.round(lastEntry.startTime);
-            console.log("[LCP]", lcpMs, "ms", lastEntry);
+    const lcpMs = Math.round(lastEntry.startTime);
+    console.log("[LCP]", lcpMs, "ms", lastEntry);
 
-            const el = document.getElementById("lcp-value");
-            if (el) el.textContent = `${(lcpMs / 1000).toFixed(2)}s`;
-        });
+    const el = document.getElementById("lcp-value");
+    if (el) el.textContent = `${(lcpMs / 1000).toFixed(2)}s`;
+    }
+
+    // Logga när sidan lämnas / cachas / byter flik
+    document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "hidden") reportLCP();
+});
+
+// Fallback: logga efter load också (bra för demo)
+window.addEventListener("load", reportLCP);
+window.addEventListener("pagehide", reportLCP);
     } catch (e) {
         console.log("LCP observer not supported:", e);
     }
